@@ -9,10 +9,6 @@ RUN set +e; apt-get update || true && apt-get install -y \
 RUN set -ex; docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install gd pdo_mysql
 
-RUN pecl install redis  \
-    && pecl install \
-    && docker-php-ext-enable redis
-
 STOPSIGNAL SIGQUIT
 
 EXPOSE 9000
