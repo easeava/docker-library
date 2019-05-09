@@ -10,7 +10,7 @@ RUN set -ex; docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --wit
     && docker-php-ext-install gd pdo_mysql
 
 RUN pecl install redis  \
-    && pecl install mongodb \
+    && pecl install \
     && docker-php-ext-enable redis
 
 STOPSIGNAL SIGQUIT
