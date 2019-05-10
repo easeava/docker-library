@@ -2,7 +2,7 @@
 
 {
   echo "Starting nginx"
-  nginx "$@" && exit 1
+  nginx -g "daemon off;" "$@" && exit 1
 } &
 
 nginx_pid=$!
