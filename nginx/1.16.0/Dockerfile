@@ -5,4 +5,6 @@ RUN chmod +x /opt/nginx-reload.sh
 
 ADD rewrite /etc/nginx/rewrite/
 
+RUN apt-get update -y && apt-get install -y notify-tools
+
 CMD ["/opt/nginx-reload.sh"]
