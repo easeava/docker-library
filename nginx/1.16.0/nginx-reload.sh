@@ -7,7 +7,7 @@
 
 nginx_pid=$!
 
-watches=${WATCH_PATHS:-"/etc/nginx/nginx.conf"}
+watches=${WATCH_PATHS:-"/etc/nginx/conf.d/"}
 
 echo "Setting up watches for ${watches[@]}"
 
