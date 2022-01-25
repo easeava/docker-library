@@ -16,7 +16,7 @@ RUN set -ex \
     # extension libaio linux-headers
     && apk add --no-cache libstdc++ openssl git bash \
     && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS libaio-dev openssl-dev curl-dev libjpeg-turbo-dev \
-    && apk add libpng-dev libjpeg freetype-dev libzip-dev libmemcached-dev
+    && apk add libpng-dev libjpeg freetype-dev libzip-dev libmemcached-dev \
     # extenstions
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd pcntl pdo_mysql mysqli bcmath opcache \
