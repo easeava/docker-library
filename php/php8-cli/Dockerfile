@@ -26,7 +26,6 @@ RUN set -ex \
     && pecl install memcached \
     && pecl install zip \
     && docker-php-ext-enable redis mongodb igbinary msgpack zip memcached zip \
-    && apk add --no-cache libpng libjpeg freetype
     # download
     && cd /tmp \
     && curl -SL "https://github.com/swoole/swoole-src/archive/${SW_VERSION}.tar.gz" -o swoole.tar.gz \
