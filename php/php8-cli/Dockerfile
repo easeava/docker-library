@@ -15,7 +15,7 @@ RUN set -ex \
     && apk update \
     # extension libaio linux-headers
     && apk add --no-cache libstdc++ openssl git bash \
-    && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS libaio-dev openssl-dev curl-dev libjpeg-turbo-dev libpng-dev libzip libjpeg freetype-dev libzip libmemcached-dev \
+    && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS libaio-dev openssl-dev curl-dev libjpeg-turbo-dev libpng-dev libjpeg freetype-dev libzip-dev libmemcached-dev \
     # extenstions
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd pcntl pdo_mysql mysqli bcmath opcache \
@@ -25,7 +25,7 @@ RUN set -ex \
     && pecl install msgpack \
     && pecl install memcached \
     && pecl install zip \
-    && docker-php-ext-enable redis mongodb igbinary msgpack zip memcached zip \
+    && docker-php-ext-enable redis mongodb igbinary msgpack memcached zip \
     # download
     && cd /tmp \
     && curl -SL "https://github.com/swoole/swoole-src/archive/${SW_VERSION}.tar.gz" -o swoole.tar.gz \
