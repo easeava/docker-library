@@ -24,6 +24,7 @@ RUN set -ex \
     && pecl install igbinary \
     && pecl install msgpack \
     && docker-php-ext-enable redis mongodb igbinary msgpack \
+    && apk add --no-cache libpng libjpeg freetype
     # download
     && cd /tmp \
     && curl -SL "https://github.com/swoole/swoole-src/archive/${SW_VERSION}.tar.gz" -o swoole.tar.gz \
