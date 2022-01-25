@@ -23,8 +23,7 @@ RUN set -ex \
     && pecl install mongodb \
     && pecl install igbinary \
     && pecl install msgpack \
-    && pecl install zip \
-    && docker-php-ext-enable redis mongodb igbinary msgpack zip \
+    && docker-php-ext-enable redis mongodb igbinary msgpack \
     # download
     && cd /tmp \
     && curl -SL "https://github.com/swoole/swoole-src/archive/${SW_VERSION}.tar.gz" -o swoole.tar.gz \
