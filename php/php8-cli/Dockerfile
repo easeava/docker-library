@@ -48,7 +48,7 @@ RUN set -ex \
     # php info
     && php -v \
     && php -m \
-    # && php --ri swoole \
+    && php --ri swoole \
     && php --ri Zend\ OPcache \
     && composer \
     # ---------- clear works ----------
