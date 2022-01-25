@@ -8,14 +8,14 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 ##
 ENV SW_VERSION=${SW_VERSION:-"v4.8.6"} \
     COMPOSER_VERSION=${COMPOSER_VERSION:-"2.2.5"} \
-    PHPIZE_DEPS="autoconf dpkg-dev dpkg file g++ gcc libc-dev make pkgconf re2c pcre-dev pcre2-dev zlib-dev libtool automake libjpeg-turbo-dev libpng-dev libzip libjpeg freetype-dev"
+    PHPIZE_DEPS="autoconf dpkg-dev dpkg file g++ gcc libc-dev make php8-dev php8-pear pkgconf re2c pcre-dev pcre2-dev zlib-dev libtool automake"
 
 # update
 RUN set -ex \
     && apk update \
     # extension libaio linux-headers
     && apk add --no-cache libstdc++ openssl git bash \
-    && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS libaio-dev openssl-dev curl-dev \
+    && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS libaio-dev openssl-dev curl-dev libjpeg-turbo-dev libpng libzip libjpeg freetype libzip libmemcached \
     # extenstions
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd pcntl pdo_mysql mysqli bcmath opcache \
@@ -23,7 +23,9 @@ RUN set -ex \
     && pecl install mongodb \
     && pecl install igbinary \
     && pecl install msgpack \
-    && docker-php-ext-enable redis mongodb igbinary msgpack \
+    && pecl install memcached \
+    && pecl install zip \
+    && docker-php-ext-enable redis mongodb igbinary msgpack zip memcached zip \
     && apk add --no-cache libpng libjpeg freetype
     # download
     && cd /tmp \
