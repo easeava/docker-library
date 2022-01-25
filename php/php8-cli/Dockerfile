@@ -8,7 +8,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 ##
 ENV SW_VERSION=${SW_VERSION:-"v4.8.6"} \
     COMPOSER_VERSION=${COMPOSER_VERSION:-"2.2.5"} \
-    PHPIZE_DEPS="autoconf dpkg-dev dpkg file g++ gcc libc-dev make pkgconf re2c pcre-dev pcre2-dev zlib-dev libtool automake freetype-dev libjpeg-turbo-dev libpng-dev libzip-dev libmemcached-dev"
+    PHPIZE_DEPS="autoconf dpkg-dev dpkg file g++ gcc libc-dev make pkgconf re2c pcre-dev pcre2-dev zlib-dev libtool automake freetype freetype-dev libjpeg-turbo-dev libpng-dev libzip libjpeg libmemcached"
 
 # update
 RUN set -ex \
@@ -50,7 +50,7 @@ RUN set -ex \
     # php info
     && php -v \
     && php -m \
-    && php --ri swoole \
+    # && php --ri swoole \
     && php --ri Zend\ OPcache \
     && composer \
     # ---------- clear works ----------
