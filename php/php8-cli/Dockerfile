@@ -8,7 +8,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 ##
 ENV SW_VERSION=${SW_VERSION:-"v4.8.6"} \
     COMPOSER_VERSION=${COMPOSER_VERSION:-"2.2.5"} \
-    PHPIZE_DEPS="autoconf dpkg-dev dpkg file g++ gcc libc-dev make pkgconf re2c pcre-dev pcre2-dev zlib-dev libtool automake libjpeg-turbo-dev libpng-dev libzip libjpeg libmemcached freetype-dev"
+    PHPIZE_DEPS="autoconf dpkg-dev dpkg file g++ gcc libc-dev make pkgconf re2c pcre-dev pcre2-dev zlib-dev libtool automake libjpeg-turbo-dev libpng-dev libzip libjpeg freetype-dev"
 
 # update
 RUN set -ex \
@@ -23,9 +23,8 @@ RUN set -ex \
     && pecl install mongodb \
     && pecl install igbinary \
     && pecl install msgpack \
-    && pecl install memcached \
     && pecl install zip \
-    && docker-php-ext-enable redis mongodb igbinary msgpack memcached zip \
+    && docker-php-ext-enable redis mongodb igbinary msgpack zip \
     # download
     && cd /tmp \
     && curl -SL "https://github.com/swoole/swoole-src/archive/${SW_VERSION}.tar.gz" -o swoole.tar.gz \
